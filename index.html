@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thunderbolt Systems — AI Agents for Infosellers &amp; Course Creators</title>
+  <meta name="description" content="Custom AI systems that book calls, revive dead leads, and automate your operations. Built for infosellers and course creators on GoHighLevel. Book a free audit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #0A0A0F;
+      --bg-surface:   #111118;
+      --bg-elevated:  #1A1A24;
+      --fg:           #FFFFFF;
+      --fg-secondary: #E8E8ED;
+      --signal:       #3B82F6;
+      --signal-neon:  #60A5FA;
+      --border:       #2A2A3A;
+      --muted:        #8888A0;
+      --dim:          #555570;
+      --success:      #34D399;
+      --warning:      #FBBF24;
+      --error:        #EF4444;
+      --purple:       #A78BFA;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    /* ======= NAV ======= */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 32px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-img-wrap {
+      height: 52px;
+      width: 210px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .logo-img-wrap img {
+      position: absolute;
+      height: 270px;
+      width: auto;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--signal);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+    }
+    .nav-cta:hover  { background: var(--signal-neon); box-shadow: 0 0 20px rgba(59,130,246,0.4); }
+    .nav-cta:active { transform: scale(0.98); }
+
+    /* ======= HERO BEAMS ======= */
+    .hero-beams {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-beams svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    /* Lift hero content above beams */
+    .hero > *:not(.hero-beams) {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ======= HERO ======= */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 32px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%,   rgba(59,130,246,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 20% 100%, rgba(59,130,246,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+
+    .hero-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(52px, 9.5vw, 118px);
+      font-weight: 800;
+      line-height: 0.88;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .hero-heading .solid {
+      display: block;
+      color: var(--fg);
+    }
+
+    .hero-heading .outline {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--fg);
+    }
+
+    .hero-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 32px;
+      margin-bottom: 6px;
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    .hero-tagline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--fg-secondary);
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 44px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--signal);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+    }
+    .btn:hover  { background: var(--signal-neon); box-shadow: 0 0 24px rgba(59,130,246,0.4); transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+    .btn:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+
+    /* ======= MARQUEE ======= */
+    .marquee-wrap {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      padding: 14px 0;
+      position: relative;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+
+    .marquee-track {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      width: max-content;
+      animation: ticker 38s linear infinite;
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-secondary);
+      padding: 0 36px;
+    }
+
+    .marquee-sep {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--signal);
+      margin: 0 36px;
+      flex-shrink: 0;
+      vertical-align: middle;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ======= REVEAL ANIMATIONS ======= */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: none;
+    }
+    [data-reveal][data-delay="1"] { transition-delay: 0.08s; }
+    [data-reveal][data-delay="2"] { transition-delay: 0.16s; }
+    [data-reveal][data-delay="3"] { transition-delay: 0.24s; }
+    [data-reveal][data-delay="4"] { transition-delay: 0.32s; }
+    [data-reveal][data-delay="5"] { transition-delay: 0.40s; }
+
+    /* ======= SHARED ======= */
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    /* ======= REALITY ======= */
+    .reality {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .reality-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(40px, 5vw, 68px);
+      font-weight: 800;
+      line-height: 0.93;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .reality-body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    /* Code block */
+    .code-block {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      overflow: hidden;
+    }
+
+    .code-titlebar {
+      background: var(--bg-elevated);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #EF4444; }
+    .dot-y { background: #FBBF24; }
+    .dot-g { background: #34D399; }
+
+    .code-body { padding: 20px 20px 24px; }
+
+    .cl { display: flex; gap: 16px; }
+    .ln { color: var(--dim); min-width: 18px; text-align: right; user-select: none; }
+    .kw  { color: var(--purple); }
+    .fn  { color: var(--signal-neon); }
+    .str { color: var(--success); }
+    .cm  { color: var(--dim); font-style: italic; }
+    .sig { color: var(--signal); }
+    .num { color: var(--warning); }
+
+    /* ======= FRAMEWORK TIMELINE ======= */
+    .framework-outer {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .framework-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 32px;
+    }
+
+    .framework-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(44px, 7.5vw, 96px);
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    /* Timeline container */
+    .tl-wrap {
+      position: relative;
+    }
+
+    /* Vertical track line */
+    .tl-track {
+      position: absolute;
+      left: 27px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--bg-elevated);
+      border-radius: 2px;
+      mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%);
+    }
+
+    /* Animated fill line */
+    .tl-fill {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 0;
+      background: linear-gradient(to bottom, #3B82F6, #60A5FA);
+      border-radius: 2px;
+    }
+
+    /* Each timeline row */
+    .tl-entry {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 72px;
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .tl-entry:last-child { border-bottom: none; }
+
+    /* Left column */
+    .tl-left {
+      display: flex;
+      align-items: flex-start;
+      padding-left: 52px;
+      position: relative;
+    }
+
+    /* Dot on the line */
+    .tl-dot {
+      position: absolute;
+      left: 20px;   /* center lands on track at 27px (20 + 7) */
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--dim);
+      box-shadow: 0 0 0 4px rgba(59,130,246,0.06);
+      z-index: 10;
+      transition: border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+    }
+    .tl-dot.active {
+      border-color: #3B82F6;
+      background: #3B82F6;
+      box-shadow: 0 0 0 6px rgba(59,130,246,0.15), 0 0 18px rgba(59,130,246,0.4);
+    }
+
+    /* Sticky label */
+    .tl-step-label {
+      position: sticky;
+      top: 38vh;
+      align-self: flex-start;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease 0.1s, transform 0.65s ease 0.1s;
+    }
+    .tl-entry.in-view .tl-step-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tl-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(60px, 6vw, 84px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: rgba(255,255,255,0.05);
+      display: block;
+      transition: color 0.5s ease;
+    }
+    .tl-entry.in-view .tl-num {
+      color: rgba(59,130,246,0.14);
+    }
+
+    .tl-phase {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 8px;
+      display: block;
+      transition: color 0.5s ease;
+    }
+    .tl-entry.in-view .tl-phase {
+      color: var(--signal);
+    }
+
+    /* Right column */
+    .tl-right {
+      padding-top: 4px;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .tl-entry.in-view .tl-right {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tl-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(30px, 3.5vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--fg);
+      margin-bottom: 20px;
+      line-height: 1;
+    }
+
+    .tl-body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 540px;
+    }
+
+    @media (max-width: 900px) {
+      .tl-entry { grid-template-columns: 1fr; gap: 24px; }
+      .tl-left { padding-left: 40px; }
+      .tl-dot { left: 13px; }
+      .tl-track { left: 20px; }
+      .tl-num { font-size: 48px; }
+      .tl-step-label { position: static; }
+    }
+
+    /* ======= OPERATIONAL SUCCESS ======= */
+    .ops {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 32px;
+    }
+
+    .ops-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(38px, 5.5vw, 72px);
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 64px;
+    }
+
+    .ops-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .ops-item {
+      display: grid;
+      grid-template-columns: 52px 220px 1fr auto;
+      gap: 28px;
+      align-items: center;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s ease;
+      cursor: default;
+    }
+    .ops-item:hover { background: rgba(59,130,246,0.03); }
+
+    .ops-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      color: var(--signal);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .ops-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .ops-client {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--dim);
+      margin-top: 4px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .ops-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge-core    { background: rgba(59,130,246,0.12);  color: #3B82F6; }
+    .badge-roi     { background: rgba(52,211,153,0.12);  color: #34D399; }
+    .badge-time    { background: rgba(251,191,36,0.12);  color: #FBBF24; }
+    .badge-revenue { background: rgba(239,68,68,0.12);   color: #EF4444; }
+    .badge-scale   { background: rgba(167,139,250,0.12); color: #A78BFA; }
+
+    /* ======= CTA ======= */
+    .cta {
+      border-top: 1px solid var(--border);
+      padding: 140px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(59,130,246,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(54px, 10vw, 136px);
+      font-weight: 800;
+      line-height: 0.88;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .cta-heading .solid   { display: block; color: var(--fg); }
+    .cta-heading .outline { display: block; color: transparent; -webkit-text-stroke: 2px var(--signal); }
+
+    .cta-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--muted);
+      margin-top: 40px;
+      margin-bottom: 44px;
+      line-height: 1.7;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ======= FOOTER ======= */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .footer-links a:hover { color: var(--fg); }
+
+    .footer-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ======= RESPONSIVE ======= */
+    @media (max-width: 900px) {
+      .reality { grid-template-columns: 1fr; gap: 48px; }
+      .framework-grid { grid-template-columns: 1fr; }
+      .fw-col { border-right: none; border-bottom: 1px solid var(--border); }
+      .fw-col:last-child { border-bottom: none; }
+      .ops-item { grid-template-columns: 40px 1fr auto; }
+      .ops-desc { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <div class="logo-img-wrap">
+        <img src="brand_assets/Word+logo%202.png" alt="Thunderbolt Systems">
+      </div>
+    </div>
+    <a href="https://links.thunderboltsystems.co/widget/booking/qhRMSys8PGO6IbSRihG3" target="_blank" rel="noopener" class="nav-cta">Get Started &nbsp;→</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-beams" aria-hidden="true">
+      <svg id="beams-svg" width="100%" height="100%" viewBox="0 0 696 316" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M-380 -189C-380 -189 -312 216 152 343C616 470 684 875 684 875M-373 -197C-373 -197 -305 208 159 335C623 462 691 867 691 867M-366 -205C-366 -205 -298 200 166 327C630 454 698 859 698 859M-359 -213C-359 -213 -291 192 173 319C637 446 705 851 705 851M-352 -221C-352 -221 -284 184 180 311C644 438 712 843 712 843M-345 -229C-345 -229 -277 176 187 303C651 430 719 835 719 835M-338 -237C-338 -237 -270 168 194 295C658 422 726 827 726 827M-331 -245C-331 -245 -263 160 201 287C665 414 733 819 733 819M-324 -253C-324 -253 -256 152 208 279C672 406 740 811 740 811M-317 -261C-317 -261 -249 144 215 271C679 398 747 803 747 803M-310 -269C-310 -269 -242 136 222 263C686 390 754 795 754 795M-303 -277C-303 -277 -235 128 229 255C693 382 761 787 761 787M-296 -285C-296 -285 -228 120 236 247C700 374 768 779 768 779M-289 -293C-289 -293 -221 112 243 239C707 366 775 771 775 771M-282 -301C-282 -301 -214 104 250 231C714 358 782 763 782 763M-275 -309C-275 -309 -207 96 257 223C721 350 789 755 789 755M-268 -317C-268 -317 -200 88 264 215C728 342 796 747 796 747M-261 -325C-261 -325 -193 80 271 207C735 334 803 739 803 739M-254 -333C-254 -333 -186 72 278 199C742 326 810 731 810 731M-247 -341C-247 -341 -179 64 285 191C749 318 817 723 817 723M-240 -349C-240 -349 -172 56 292 183C756 310 824 715 824 715M-233 -357C-233 -357 -165 48 299 175C763 302 831 707 831 707M-226 -365C-226 -365 -158 40 306 167C770 294 838 699 838 699M-219 -373C-219 -373 -151 32 313 159C777 286 845 691 845 691M-212 -381C-212 -381 -144 24 320 151C784 278 852 683 852 683M-205 -389C-205 -389 -137 16 327 143C791 270 859 675 859 675M-198 -397C-198 -397 -130 8 334 135C798 262 866 667 866 667M-191 -405C-191 -405 -123 0 341 127C805 254 873 659 873 659M-184 -413C-184 -413 -116 -8 348 119C812 246 880 651 880 651M-177 -421C-177 -421 -109 -16 355 111C819 238 887 643 887 643M-170 -429C-170 -429 -102 -24 362 103C826 230 894 635 894 635M-163 -437C-163 -437 -95 -32 369 95C833 222 901 627 901 627M-156 -445C-156 -445 -88 -40 376 87C840 214 908 619 908 619M-149 -453C-149 -453 -81 -48 383 79C847 206 915 611 915 611M-142 -461C-142 -461 -74 -56 390 71C854 198 922 603 922 603M-135 -469C-135 -469 -67 -64 397 63C861 190 929 595 929 595M-128 -477C-128 -477 -60 -72 404 55C868 182 936 587 936 587M-121 -485C-121 -485 -53 -80 411 47C875 174 943 579 943 579M-114 -493C-114 -493 -46 -88 418 39C882 166 950 571 950 571M-107 -501C-107 -501 -39 -96 425 31C889 158 957 563 957 563M-100 -509C-100 -509 -32 -104 432 23C896 150 964 555 964 555M-93 -517C-93 -517 -25 -112 439 15C903 142 971 547 971 547M-86 -525C-86 -525 -18 -120 446 7C910 134 978 539 978 539M-79 -533C-79 -533 -11 -128 453 -1C917 126 985 531 985 531M-72 -541C-72 -541 -4 -136 460 -9C924 118 992 523 992 523M-65 -549C-65 -549 3 -144 467 -17C931 110 999 515 999 515M-58 -557C-58 -557 10 -152 474 -25C938 102 1006 507 1006 507M-51 -565C-51 -565 17 -160 481 -33C945 94 1013 499 1013 499M-44 -573C-44 -573 24 -168 488 -41C952 86 1020 491 1020 491M-37 -581C-37 -581 31 -176 495 -49C959 78 1027 483 1027 483" stroke="url(#beams-radial)" stroke-opacity="0.05" stroke-width="0.5"></path>
+        <defs>
+          <radialGradient id="beams-radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(352 34) rotate(90) scale(555 1560.62)">
+            <stop offset="0.0666667" stop-color="#888"></stop>
+            <stop offset="0.243243" stop-color="#888"></stop>
+            <stop offset="0.43594" stop-color="white" stop-opacity="0"></stop>
+          </radialGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <p class="hero-eyebrow">/// AI Transformation Partners</p>
+    <h1 class="hero-heading">
+      <span class="solid">AI Systems That</span>
+      <span class="outline">Sell For You.</span>
+    </h1>
+    <p class="hero-sub">Custom AI agents that book calls, follow up leads, and run your backend — so you can focus on what you do best.</p>
+    <p class="hero-tagline">Consult &nbsp;·&nbsp; Build &nbsp;·&nbsp; Maintain</p>
+    <a href="https://links.thunderboltsystems.co/widget/booking/qhRMSys8PGO6IbSRihG3" target="_blank" rel="noopener" class="btn">Book a Discovery Call &nbsp;→</a>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">AI Appointment Setting</span><span class="marquee-sep"></span>
+      <span class="marquee-item">Lead Automation</span><span class="marquee-sep"></span>
+      <span class="marquee-item">Dead Lead Revival</span><span class="marquee-sep"></span>
+      <span class="marquee-item">Content Multiplication</span><span class="marquee-sep"></span>
+      <span class="marquee-item">Sales Pipeline Management</span><span class="marquee-sep"></span>
+      <span class="marquee-item">RAG Knowledge Bases</span><span class="marquee-sep"></span>
+      <span class="marquee-item">24/7 Automated Response</span><span class="marquee-sep"></span>
+      <span class="marquee-item">GoHighLevel Integration</span><span class="marquee-sep"></span>
+      <span class="marquee-item">Claude API Powered</span><span class="marquee-sep"></span>
+      <span class="marquee-item">14-Day Implementation</span><span class="marquee-sep"></span>
+      <span class="marquee-item">AI Appointment Setting</span><span class="marquee-sep"></span>
+      <span class="marquee-item">Lead Automation</span><span class="marquee-sep"></span>
+      <span class="marquee-item">Dead Lead Revival</span><span class="marquee-sep"></span>
+      <span class="marquee-item">Content Multiplication</span><span class="marquee-sep"></span>
+      <span class="marquee-item">Sales Pipeline Management</span><span class="marquee-sep"></span>
+      <span class="marquee-item">RAG Knowledge Bases</span><span class="marquee-sep"></span>
+      <span class="marquee-item">24/7 Automated Response</span><span class="marquee-sep"></span>
+      <span class="marquee-item">GoHighLevel Integration</span><span class="marquee-sep"></span>
+      <span class="marquee-item">Claude API Powered</span><span class="marquee-sep"></span>
+      <span class="marquee-item">14-Day Implementation</span><span class="marquee-sep"></span>
+    </div>
+  </div>
+
+  <!-- REALITY -->
+  <div class="reality">
+    <div>
+      <div class="section-label" data-reveal>/// The Reality</div>
+      <h2 class="reality-heading" data-reveal data-delay="1">Automate or<br>Get Left Behind.</h2>
+      <p class="reality-body" data-reveal data-delay="2">AI isn't replacing infosellers. It's replacing infosellers who don't use it. The ones integrating AI into their lead flow, follow-up, and operations will outpace everyone still doing it manually. We build the systems that make that happen.</p>
+    </div>
+    <div>
+      <div class="code-block" data-reveal data-delay="2">
+        <div class="code-titlebar">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+        </div>
+        <div class="code-body">
+          <div class="cl"><span class="ln">1</span><span><span class="kw">class</span> <span class="fn">appointment_setter</span>():</span></div>
+          <div class="cl"><span class="ln">2</span><span>  <span class="cm">// AI-powered qualification</span></span></div>
+          <div class="cl"><span class="ln">3</span><span>  <span class="cm">// Instant response to every lead</span></span></div>
+          <div class="cl"><span class="ln">4</span><span>&nbsp;</span></div>
+          <div class="cl"><span class="ln">5</span><span>  <span class="kw">async def</span> <span class="fn">qualify_and_book</span>(lead):</span></div>
+          <div class="cl"><span class="ln">6</span><span>    answers = <span class="kw">await</span> <span class="fn">ask_questions</span>(lead)</span></div>
+          <div class="cl"><span class="ln">7</span><span>&nbsp;</span></div>
+          <div class="cl"><span class="ln">8</span><span>    <span class="kw">if</span> <span class="fn">meets_criteria</span>(answers):</span></div>
+          <div class="cl"><span class="ln">9</span><span>      <span class="kw">return</span> <span class="fn">book_call</span>(<span class="str">"discovery_call"</span>)</span></div>
+          <div class="cl"><span class="ln">10</span><span>&nbsp;</span></div>
+          <div class="cl"><span class="ln">11</span><span>    <span class="kw">return</span> <span class="fn">nurture</span>(lead, <span class="str">"free_resource"</span>)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRAMEWORK TIMELINE -->
+  <div class="framework-outer">
+    <div class="framework-inner">
+      <div class="section-label" style="text-align:center" data-reveal>/// The Methodology</div>
+      <h2 class="framework-heading" data-reveal data-delay="1">The Framework</h2>
+
+      <div class="tl-wrap" id="tl-container">
+
+        <!-- Scroll-driven vertical line -->
+        <div class="tl-track">
+          <div class="tl-fill" id="tl-fill"></div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="tl-entry" id="tl-entry-0">
+          <div class="tl-left">
+            <div class="tl-dot" id="tl-dot-0"></div>
+            <div class="tl-step-label">
+              <span class="tl-num">01</span>
+              <span class="tl-phase">Discover</span>
+            </div>
+          </div>
+          <div class="tl-right">
+            <div class="tl-title">Audit</div>
+            <p class="tl-body">We reverse-engineer your entire client acquisition process. Every touchpoint, every follow-up, every manual task — mapped, measured, and scored for automation potential. Most infosellers are shocked by what they find.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="tl-entry" id="tl-entry-1">
+          <div class="tl-left">
+            <div class="tl-dot" id="tl-dot-1"></div>
+            <div class="tl-step-label">
+              <span class="tl-num">02</span>
+              <span class="tl-phase">Build</span>
+            </div>
+          </div>
+          <div class="tl-right">
+            <div class="tl-title">Implementation</div>
+            <p class="tl-body">No templates. No generic chatbots. We architect custom AI agents that plug directly into your existing stack — GoHighLevel, ManyChat, your calendar, your CRM. Built to match your voice, your offer, and your sales process.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="tl-entry" id="tl-entry-2">
+          <div class="tl-left">
+            <div class="tl-dot" id="tl-dot-2"></div>
+            <div class="tl-step-label">
+              <span class="tl-num">03</span>
+              <span class="tl-phase">Sustain</span>
+            </div>
+          </div>
+          <div class="tl-right">
+            <div class="tl-title">Optimisation</div>
+            <p class="tl-body">Systems aren't set-and-forget. We monitor every conversation, refine every prompt, and tune every workflow based on real performance data. Your agents get sharper every week — compounding results month over month.</p>
+          </div>
+        </div>
+
+      </div><!-- /tl-wrap -->
+    </div>
+  </div>
+
+  <!-- OPERATIONAL SUCCESS -->
+  <div class="ops">
+    <div class="section-label" data-reveal>/// Services &amp; Systems</div>
+    <h2 class="ops-heading" data-reveal data-delay="1">Systems That<br>Deliver.</h2>
+    <div class="ops-list">
+
+      <div class="ops-item" data-reveal data-delay="1">
+        <div class="ops-num">01</div>
+        <div>
+          <div class="ops-name">AI Appointment Setter</div>
+          <div class="ops-client">GoHighLevel · ManyChat</div>
+        </div>
+        <div class="ops-desc">An AI agent that qualifies inbound leads via DM, asks your pre-set questions, and books discovery calls directly into your calendar. Responds in seconds, runs 24/7, and never forgets to follow up.</div>
+        <div class="badge badge-core">Core System</div>
+      </div>
+
+      <div class="ops-item" data-reveal data-delay="2">
+        <div class="ops-num">02</div>
+        <div>
+          <div class="ops-name">Dead Lead Revival Engine</div>
+          <div class="ops-client">GHL Workflows · Claude API</div>
+        </div>
+        <div class="ops-desc">Systematic AI-powered reactivation of every cold, stalled, or ghosted lead in your CRM. Personalised messages across SMS, email, and DM — recovering revenue you've already paid to generate.</div>
+        <div class="badge badge-roi">High ROI</div>
+      </div>
+
+      <div class="ops-item" data-reveal data-delay="3">
+        <div class="ops-num">03</div>
+        <div>
+          <div class="ops-name">Content Multiplication System</div>
+          <div class="ops-client">N8N · Claude API · Buffer</div>
+        </div>
+        <div class="ops-desc">Turn one piece of long-form content into 10+ platform-specific posts. AI-generated in your voice, scheduled across Instagram, TikTok, LinkedIn, and email — with a one-click approval flow.</div>
+        <div class="badge badge-time">Time Saver</div>
+      </div>
+
+      <div class="ops-item" data-reveal data-delay="4">
+        <div class="ops-num">04</div>
+        <div>
+          <div class="ops-name">AI Sales Pipeline Manager</div>
+          <div class="ops-client">GHL · Slack · Google Docs</div>
+        </div>
+        <div class="ops-desc">Automated prospect research before every call, AI-generated proposals after every close conversation, and real-time pipeline alerts when deals stall. Your sales process on autopilot.</div>
+        <div class="badge badge-revenue">Revenue Engine</div>
+      </div>
+
+      <div class="ops-item" data-reveal data-delay="5">
+        <div class="ops-num">05</div>
+        <div>
+          <div class="ops-name">RAG Knowledge Base Agent</div>
+          <div class="ops-client">Pinecone · Claude API · Slack</div>
+        </div>
+        <div class="ops-desc">Your entire course content, SOPs, and offer IP turned into a searchable AI assistant. Your team and students get instant, accurate answers without pinging you.</div>
+        <div class="badge badge-scale">Scale Tool</div>
+      </div>
+
+    </div>
+
+    <!-- Custom systems note -->
+    <div data-reveal data-delay="5" style="margin-top: 48px; padding: 32px 40px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-surface); display: flex; align-items: center; gap: 32px;">
+      <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(59,130,246,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><polygon points="12,1 5,11 10,11 8,19 15,9 10,9" fill="#3B82F6"/></svg>
+      </div>
+      <div>
+        <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; color: var(--fg); margin-bottom: 6px;">Every system is built to your business — not from a template.</div>
+        <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--muted); line-height: 1.7;">The five systems above represent our most common builds. In practice, every engagement is scoped around your specific funnel, tools, and goals. If you have a workflow that's costing you time or revenue, we'll build the system to fix it.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta" id="contact">
+    <div class="section-label" data-reveal>/// Ready to Build?</div>
+    <h2 class="cta-heading" data-reveal data-delay="1">
+      <span class="solid">Stop Chasing</span>
+      <span class="outline">Leads Manually.</span>
+    </h2>
+    <p class="cta-sub" data-reveal data-delay="2">Book a free discovery audit. We'll map your current lead flow, identify the biggest automation opportunities, and show you exactly what a custom AI system would look like for your business.</p>
+    <a href="https://links.thunderboltsystems.co/widget/booking/qhRMSys8PGO6IbSRihG3" target="_blank" rel="noopener" class="btn" data-reveal data-delay="3">Book Your Audit &nbsp;→</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer data-reveal>
+    <div class="footer-links">
+      <a href="#">LinkedIn</a>
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+    </div>
+    <div class="footer-copy">Thunderbolt Systems &copy; 2026</div>
+  </footer>
+
+  <script>
+    (function () {
+      const container = document.getElementById('tl-container');
+      const fill      = document.getElementById('tl-fill');
+      const entries   = Array.from(document.querySelectorAll('.tl-entry'));
+      const dots      = Array.from(document.querySelectorAll('.tl-dot'));
+
+      function updateTimeline() {
+        if (!container || !fill) return;
+
+        const rect    = container.getBoundingClientRect();
+        const winH    = window.innerHeight;
+
+        // Fill starts when top of section is 15% from top of viewport,
+        // ends when bottom of section reaches 60% from top.
+        const startY  = winH * 0.15;
+        const scrolled = startY - rect.top;
+        const total    = rect.height - (winH - startY * 2);
+        const progress = Math.min(Math.max(scrolled / total, 0), 1);
+
+        fill.style.height = (progress * container.offsetHeight) + 'px';
+
+        // Activate dots & labels as their entry scrolls into view
+        entries.forEach(function (entry, i) {
+          const er = entry.getBoundingClientRect();
+          if (er.top < winH * 0.55) {
+            dots[i].classList.add('active');
+            entry.classList.add('in-view');
+          } else {
+            dots[i].classList.remove('active');
+            entry.classList.remove('in-view');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateTimeline, { passive: true });
+      window.addEventListener('resize', updateTimeline);
+      updateTimeline();
+    })();
+  </script>
+
+  <script>
+    /* ======= REVEAL ON SCROLL ======= */
+    (function () {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('[data-reveal]').forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
+
+  <script>
+    /* ======= BACKGROUND BEAMS ======= */
+    (function () {
+      var paths = [
+        "M-380 -189C-380 -189 -312 216 152 343C616 470 684 875 684 875",
+        "M-373 -197C-373 -197 -305 208 159 335C623 462 691 867 691 867",
+        "M-366 -205C-366 -205 -298 200 166 327C630 454 698 859 698 859",
+        "M-359 -213C-359 -213 -291 192 173 319C637 446 705 851 705 851",
+        "M-352 -221C-352 -221 -284 184 180 311C644 438 712 843 712 843",
+        "M-345 -229C-345 -229 -277 176 187 303C651 430 719 835 719 835",
+        "M-338 -237C-338 -237 -270 168 194 295C658 422 726 827 726 827",
+        "M-331 -245C-331 -245 -263 160 201 287C665 414 733 819 733 819",
+        "M-324 -253C-324 -253 -256 152 208 279C672 406 740 811 740 811",
+        "M-317 -261C-317 -261 -249 144 215 271C679 398 747 803 747 803",
+        "M-310 -269C-310 -269 -242 136 222 263C686 390 754 795 754 795",
+        "M-303 -277C-303 -277 -235 128 229 255C693 382 761 787 761 787",
+        "M-296 -285C-296 -285 -228 120 236 247C700 374 768 779 768 779",
+        "M-289 -293C-289 -293 -221 112 243 239C707 366 775 771 775 771",
+        "M-282 -301C-282 -301 -214 104 250 231C714 358 782 763 782 763",
+        "M-275 -309C-275 -309 -207 96 257 223C721 350 789 755 789 755",
+        "M-268 -317C-268 -317 -200 88 264 215C728 342 796 747 796 747",
+        "M-261 -325C-261 -325 -193 80 271 207C735 334 803 739 803 739",
+        "M-254 -333C-254 -333 -186 72 278 199C742 326 810 731 810 731",
+        "M-247 -341C-247 -341 -179 64 285 191C749 318 817 723 817 723",
+        "M-240 -349C-240 -349 -172 56 292 183C756 310 824 715 824 715",
+        "M-233 -357C-233 -357 -165 48 299 175C763 302 831 707 831 707",
+        "M-226 -365C-226 -365 -158 40 306 167C770 294 838 699 838 699",
+        "M-219 -373C-219 -373 -151 32 313 159C777 286 845 691 845 691",
+        "M-212 -381C-212 -381 -144 24 320 151C784 278 852 683 852 683",
+        "M-205 -389C-205 -389 -137 16 327 143C791 270 859 675 859 675",
+        "M-198 -397C-198 -397 -130 8 334 135C798 262 866 667 866 667",
+        "M-191 -405C-191 -405 -123 0 341 127C805 254 873 659 873 659",
+        "M-184 -413C-184 -413 -116 -8 348 119C812 246 880 651 880 651",
+        "M-177 -421C-177 -421 -109 -16 355 111C819 238 887 643 887 643",
+        "M-170 -429C-170 -429 -102 -24 362 103C826 230 894 635 894 635",
+        "M-163 -437C-163 -437 -95 -32 369 95C833 222 901 627 901 627",
+        "M-156 -445C-156 -445 -88 -40 376 87C840 214 908 619 908 619",
+        "M-149 -453C-149 -453 -81 -48 383 79C847 206 915 611 915 611",
+        "M-142 -461C-142 -461 -74 -56 390 71C854 198 922 603 922 603",
+        "M-135 -469C-135 -469 -67 -64 397 63C861 190 929 595 929 595",
+        "M-128 -477C-128 -477 -60 -72 404 55C868 182 936 587 936 587",
+        "M-121 -485C-121 -485 -53 -80 411 47C875 174 943 579 943 579",
+        "M-114 -493C-114 -493 -46 -88 418 39C882 166 950 571 950 571",
+        "M-107 -501C-107 -501 -39 -96 425 31C889 158 957 563 957 563",
+        "M-100 -509C-100 -509 -32 -104 432 23C896 150 964 555 964 555",
+        "M-93 -517C-93 -517 -25 -112 439 15C903 142 971 547 971 547",
+        "M-86 -525C-86 -525 -18 -120 446 7C910 134 978 539 978 539",
+        "M-79 -533C-79 -533 -11 -128 453 -1C917 126 985 531 985 531",
+        "M-72 -541C-72 -541 -4 -136 460 -9C924 118 992 523 992 523",
+        "M-65 -549C-65 -549 3 -144 467 -17C931 110 999 515 999 515",
+        "M-58 -557C-58 -557 10 -152 474 -25C938 102 1006 507 1006 507",
+        "M-51 -565C-51 -565 17 -160 481 -33C945 94 1013 499 1013 499",
+        "M-44 -573C-44 -573 24 -168 488 -41C952 86 1020 491 1020 491",
+        "M-37 -581C-37 -581 31 -176 495 -49C959 78 1027 483 1027 483"
+      ];
+
+      var NS = 'http://www.w3.org/2000/svg';
+      var svg = document.getElementById('beams-svg');
+      var defs = svg.querySelector('defs');
+
+      /* Per-beam random params, fixed at init */
+      var beams = paths.map(function (d, i) {
+        var duration = (Math.random() * 10 + 10) * 1000;
+        var delay    = Math.random() * 10 * 1000;
+        var endY2    = 93 + Math.random() * 8;
+
+        /* gradient */
+        var grad = document.createElementNS(NS, 'linearGradient');
+        grad.setAttribute('id', 'bg' + i);
+        grad.setAttribute('gradientUnits', 'objectBoundingBox');
+        grad.setAttribute('x1', '0%'); grad.setAttribute('y1', '0%');
+        grad.setAttribute('x2', '0%'); grad.setAttribute('y2', '0%');
+
+        var stops = [
+          { offset: '0%',    color: '#18CCFC', opacity: '0' },
+          { offset: '0%',    color: '#18CCFC', opacity: '1' },
+          { offset: '32.5%', color: '#6344F5', opacity: '1' },
+          { offset: '100%',  color: '#AE48FF', opacity: '0' }
+        ];
+        stops.forEach(function (s) {
+          var stop = document.createElementNS(NS, 'stop');
+          stop.setAttribute('offset', s.offset);
+          stop.setAttribute('stop-color', s.color);
+          stop.setAttribute('stop-opacity', s.opacity);
+          grad.appendChild(stop);
+        });
+        defs.appendChild(grad);
+
+        /* path */
+        var path = document.createElementNS(NS, 'path');
+        path.setAttribute('d', d);
+        path.setAttribute('stroke', 'url(#bg' + i + ')');
+        path.setAttribute('stroke-opacity', '0.4');
+        path.setAttribute('stroke-width', '0.5');
+        svg.insertBefore(path, defs);
+
+        return { grad: grad, duration: duration, delay: delay, endY2: endY2, startTime: null };
+      });
+
+      function easeInOut(t) {
+        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      }
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      function tick(ts) {
+        beams.forEach(function (b) {
+          if (b.startTime === null) b.startTime = ts + b.delay;
+          var elapsed = ts - b.startTime;
+          if (elapsed < 0) return;
+          var t = (elapsed % b.duration) / b.duration;
+          var e = easeInOut(t);
+          b.grad.setAttribute('x1', lerp(0, 100, e) + '%');
+          b.grad.setAttribute('x2', lerp(0, 95,  e) + '%');
+          b.grad.setAttribute('y1', lerp(0, 100, e) + '%');
+          b.grad.setAttribute('y2', lerp(0, b.endY2, e) + '%');
+        });
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>
