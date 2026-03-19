@@ -552,21 +552,51 @@
       margin-bottom: 64px;
     }
 
-    .ops-list {
+    /* ======= STICKY TABS (Systems That Deliver) ======= */
+    .sticky-tabs-wrap {
       border-top: 1px solid var(--border);
+      overflow: clip;
     }
-
-    .ops-item {
-      display: grid;
-      grid-template-columns: 52px 220px 1fr auto;
-      gap: 28px;
-      align-items: center;
-      padding: 28px 0;
+    .sticky-tab-sec {
+      overflow: clip;
+    }
+    .sticky-tab-hd {
+      position: sticky;
+      top: 80px;
+      z-index: 10;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      transition: background 0.2s ease;
-      cursor: default;
+      margin-top: -1px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.7);
     }
-    .ops-item:hover { background: rgba(59,130,246,0.03); }
+    .sticky-tab-hd-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      gap: 24px;
+    }
+    .sticky-tab-meta {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .sticky-tab-body {
+      background: var(--bg-surface);
+      padding: 64px 0;
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+    }
+    .ops-desc-xl {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(16px, 1.8vw, 20px);
+      color: var(--fg-secondary);
+      line-height: 1.75;
+      max-width: 760px;
+      margin: 0;
+    }
 
     .ops-num {
       font-family: 'Space Grotesk', sans-serif;
@@ -697,8 +727,10 @@
       .framework-grid { grid-template-columns: 1fr; }
       .fw-col { border-right: none; border-bottom: 1px solid var(--border); }
       .fw-col:last-child { border-bottom: none; }
-      .ops-item { grid-template-columns: 40px 1fr auto; }
-      .ops-desc { display: none; }
+      .sticky-tab-hd-inner { padding: 16px 0; gap: 12px; }
+      .sticky-tab-meta { gap: 14px; }
+      .ops-desc-xl { font-size: 15px; }
+      .sticky-tab-body { padding: 40px 0; min-height: 200px; }
     }
   </style>
 </head>
@@ -862,57 +894,97 @@
   <div class="ops">
     <div class="section-label" data-reveal>/// Services &amp; Systems</div>
     <h2 class="ops-heading" data-reveal data-delay="1">Systems That<br>Deliver.</h2>
-    <div class="ops-list">
+    <div class="sticky-tabs-wrap">
 
-      <div class="ops-item" data-reveal data-delay="1">
-        <div class="ops-num">01</div>
-        <div>
-          <div class="ops-name">AI Appointment Setter</div>
-          <div class="ops-client">GoHighLevel · ManyChat</div>
+      <section class="sticky-tab-sec" data-reveal>
+        <div class="sticky-tab-hd">
+          <div class="sticky-tab-hd-inner">
+            <div class="sticky-tab-meta">
+              <div class="ops-num">01</div>
+              <div>
+                <div class="ops-name">AI Appointment Setter</div>
+                <div class="ops-client">GoHighLevel · ManyChat</div>
+              </div>
+            </div>
+            <div class="badge badge-core">Core System</div>
+          </div>
         </div>
-        <div class="ops-desc">An AI agent that qualifies inbound leads via DM, asks your pre-set questions, and books discovery calls directly into your calendar. Responds in seconds, runs 24/7, and never forgets to follow up.</div>
-        <div class="badge badge-core">Core System</div>
-      </div>
+        <div class="sticky-tab-body">
+          <p class="ops-desc-xl">An AI agent that qualifies inbound leads via DM, asks your pre-set questions, and books discovery calls directly into your calendar. Responds in seconds, runs 24/7, and never forgets to follow up.</p>
+        </div>
+      </section>
 
-      <div class="ops-item" data-reveal data-delay="2">
-        <div class="ops-num">02</div>
-        <div>
-          <div class="ops-name">Dead Lead Revival Engine</div>
-          <div class="ops-client">GHL Workflows · Claude API</div>
+      <section class="sticky-tab-sec" data-reveal>
+        <div class="sticky-tab-hd">
+          <div class="sticky-tab-hd-inner">
+            <div class="sticky-tab-meta">
+              <div class="ops-num">02</div>
+              <div>
+                <div class="ops-name">Dead Lead Revival Engine</div>
+                <div class="ops-client">GHL Workflows · Claude API</div>
+              </div>
+            </div>
+            <div class="badge badge-roi">High ROI</div>
+          </div>
         </div>
-        <div class="ops-desc">Systematic AI-powered reactivation of every cold, stalled, or ghosted lead in your CRM. Personalised messages across SMS, email, and DM — recovering revenue you've already paid to generate.</div>
-        <div class="badge badge-roi">High ROI</div>
-      </div>
+        <div class="sticky-tab-body">
+          <p class="ops-desc-xl">Systematic AI-powered reactivation of every cold, stalled, or ghosted lead in your CRM. Personalised messages across SMS, email, and DM — recovering revenue you've already paid to generate.</p>
+        </div>
+      </section>
 
-      <div class="ops-item" data-reveal data-delay="3">
-        <div class="ops-num">03</div>
-        <div>
-          <div class="ops-name">Content Multiplication System</div>
-          <div class="ops-client">N8N · Claude API · Buffer</div>
+      <section class="sticky-tab-sec" data-reveal>
+        <div class="sticky-tab-hd">
+          <div class="sticky-tab-hd-inner">
+            <div class="sticky-tab-meta">
+              <div class="ops-num">03</div>
+              <div>
+                <div class="ops-name">Content Multiplication System</div>
+                <div class="ops-client">N8N · Claude API · Buffer</div>
+              </div>
+            </div>
+            <div class="badge badge-time">Time Saver</div>
+          </div>
         </div>
-        <div class="ops-desc">Turn one piece of long-form content into 10+ platform-specific posts. AI-generated in your voice, scheduled across Instagram, TikTok, LinkedIn, and email — with a one-click approval flow.</div>
-        <div class="badge badge-time">Time Saver</div>
-      </div>
+        <div class="sticky-tab-body">
+          <p class="ops-desc-xl">Turn one piece of long-form content into 10+ platform-specific posts. AI-generated in your voice, scheduled across Instagram, TikTok, LinkedIn, and email — with a one-click approval flow.</p>
+        </div>
+      </section>
 
-      <div class="ops-item" data-reveal data-delay="4">
-        <div class="ops-num">04</div>
-        <div>
-          <div class="ops-name">AI Sales Pipeline Manager</div>
-          <div class="ops-client">GHL · Slack · Google Docs</div>
+      <section class="sticky-tab-sec" data-reveal>
+        <div class="sticky-tab-hd">
+          <div class="sticky-tab-hd-inner">
+            <div class="sticky-tab-meta">
+              <div class="ops-num">04</div>
+              <div>
+                <div class="ops-name">AI Sales Pipeline Manager</div>
+                <div class="ops-client">GHL · Slack · Google Docs</div>
+              </div>
+            </div>
+            <div class="badge badge-revenue">Revenue Engine</div>
+          </div>
         </div>
-        <div class="ops-desc">Automated prospect research before every call, AI-generated proposals after every close conversation, and real-time pipeline alerts when deals stall. Your sales process on autopilot.</div>
-        <div class="badge badge-revenue">Revenue Engine</div>
-      </div>
+        <div class="sticky-tab-body">
+          <p class="ops-desc-xl">Automated prospect research before every call, AI-generated proposals after every close conversation, and real-time pipeline alerts when deals stall. Your sales process on autopilot.</p>
+        </div>
+      </section>
 
-      <div class="ops-item" data-reveal data-delay="5">
-        <div class="ops-num">05</div>
-        <div>
-          <div class="ops-name">RAG Knowledge Base Agent</div>
-          <div class="ops-client">Pinecone · Claude API · Slack</div>
+      <section class="sticky-tab-sec" data-reveal>
+        <div class="sticky-tab-hd">
+          <div class="sticky-tab-hd-inner">
+            <div class="sticky-tab-meta">
+              <div class="ops-num">05</div>
+              <div>
+                <div class="ops-name">RAG Knowledge Base Agent</div>
+                <div class="ops-client">Pinecone · Claude API · Slack</div>
+              </div>
+            </div>
+            <div class="badge badge-scale">Scale Tool</div>
+          </div>
         </div>
-        <div class="ops-desc">Your entire course content, SOPs, and offer IP turned into a searchable AI assistant. Your team and students get instant, accurate answers without pinging you.</div>
-        <div class="badge badge-scale">Scale Tool</div>
-      </div>
+        <div class="sticky-tab-body">
+          <p class="ops-desc-xl">Your entire course content, SOPs, and offer IP turned into a searchable AI assistant. Your team and students get instant, accurate answers without pinging you.</p>
+        </div>
+      </section>
 
     </div>
 
