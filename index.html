@@ -563,10 +563,32 @@
       align-items: center;
       padding: 28px 0;
       border-bottom: 1px solid var(--border);
-      transition: background 0.2s ease;
+      position: relative;
+      transition: background 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       cursor: default;
     }
-    .ops-item:hover { background: rgba(59,130,246,0.03); }
+
+    /* Left accent bar — springs in on hover */
+    .ops-item::before {
+      content: '';
+      position: absolute;
+      left: -32px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--signal);
+      transform: scaleY(0);
+      transform-origin: 50% 50%;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .ops-item:hover {
+      background: rgba(59,130,246,0.05);
+    }
+
+    .ops-item:hover::before {
+      transform: scaleY(1);
+    }
 
     .ops-num {
       font-family: 'Space Grotesk', sans-serif;
@@ -574,6 +596,11 @@
       color: var(--signal);
       font-weight: 700;
       letter-spacing: -0.02em;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .ops-item:hover .ops-num {
+      transform: translateX(6px);
     }
 
     .ops-name {
@@ -917,13 +944,13 @@
     </div>
 
     <!-- Custom systems note -->
-    <div data-reveal data-delay="5" style="margin-top: 48px; padding: 32px 40px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-surface); display: flex; align-items: center; gap: 32px;">
-      <div style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(59,130,246,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><polygon points="12,1 5,11 10,11 8,19 15,9 10,9" fill="#3B82F6"/></svg>
+    <div data-reveal data-delay="5" style="margin-top: 48px; padding: 32px 40px; border: 1px solid rgba(59,130,246,0.35); border-left: 3px solid #3B82F6; border-radius: 10px; background: linear-gradient(135deg, rgba(59,130,246,0.07) 0%, rgba(59,130,246,0.02) 100%); display: flex; align-items: center; gap: 32px; box-shadow: 0 0 0 1px rgba(59,130,246,0.08), 0 8px 40px rgba(59,130,246,0.1);">
+      <div style="flex-shrink: 0; width: 44px; height: 44px; background: rgba(59,130,246,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 16px rgba(59,130,246,0.2);">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><polygon points="12,1 5,11 10,11 8,19 15,9 10,9" fill="#60A5FA"/></svg>
       </div>
       <div>
-        <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; color: var(--fg); margin-bottom: 6px;">Every system is built to your business — not from a template.</div>
-        <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--muted); line-height: 1.7;">The five systems above represent our most common builds. In practice, every engagement is scoped around your specific funnel, tools, and goals. If you have a workflow that's costing you time or revenue, we'll build the system to fix it.</div>
+        <div style="font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; letter-spacing: -0.01em;">Every system is built to your business — not from a template.</div>
+        <div style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--fg-secondary); line-height: 1.7;">The five systems above represent our most common builds. In practice, every engagement is scoped around your specific funnel, tools, and goals. If you have a workflow that's costing you time or revenue, we'll build the system to fix it.</div>
       </div>
     </div>
   </div>
