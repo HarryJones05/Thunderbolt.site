@@ -1,12 +1,10 @@
-
-
 **THUNDERBOLT SYSTEMS**
 
 Brand Asset Guide
 
 Design System, Colour Palette, Typography, Components & Usage Guidelines
 
-*For Claude Code / Developer Reference*
+_For Claude Code / Developer Reference_
 
 March 2026 — v1.0
 
@@ -16,15 +14,15 @@ Thunderbolt Systems is an AI consulting and automation firm specialising in cust
 
 **Brand Personality**
 
-* Direct and no-nonsense — we state what the system does and what it replaces
+- Direct and no-nonsense — we state what the system does and what it replaces
 
-* Technically credible — we name the tools (GHL, ManyChat, Claude API) without being intimidating
+- Technically credible — we name the tools (GHL, ManyChat, Claude API) without being intimidating
 
-* Results-focused — every claim ties to a measurable outcome (booked calls, recovered leads, hours saved)
+- Results-focused — every claim ties to a measurable outcome (booked calls, recovered leads, hours saved)
 
-* Modern and premium — dark, clean aesthetic signals cutting-edge technology
+- Modern and premium — dark, clean aesthetic signals cutting-edge technology
 
-* Coach-first framing — the AI is infrastructure, the coach is the expert
+- Coach-first framing — the AI is infrastructure, the coach is the expert
 
 **Brand Tagline**
 
@@ -48,11 +46,11 @@ The Thunderbolt Systems logo consists of a triple lightning bolt mark paired wit
 
 **Logo Files**
 
-**Word\_logo.png:** Primary logo on white background
+**Word_logo.png:** Primary logo on white background
 
 **Word.png:** Logo variant on dark background (dark mark, right-aligned bolt)
 
-**Word\_logo\_2.png:** Logo variant on dark background (dark mark, left-aligned bolt)
+**Word_logo_2.png:** Logo variant on dark background (dark mark, left-aligned bolt)
 
 **Clear Space & Minimum Size**
 
@@ -60,13 +58,13 @@ Maintain a clear space around the logo equal to the height of one lightning bolt
 
 **Logo Don’ts**
 
-* Never rotate, skew, or distort the logo
+- Never rotate, skew, or distort the logo
 
-* Never change the colours of the lightning bolts independently
+- Never change the colours of the lightning bolts independently
 
-* Never place the full-colour logo on a busy or low-contrast background
+- Never place the full-colour logo on a busy or low-contrast background
 
-* Never recreate the logo in a different font
+- Never recreate the logo in a different font
 
 # **3\. Colour Palette**
 
@@ -74,37 +72,37 @@ The colour system is designed for a dark-mode-first website experience, with hig
 
 ## **3.1 Primary Brand Colours**
 
-| Swatch | Name | Hex | Role | Usage |
-| :---- | :---- | :---- | :---- | :---- |
-|   | **Navy Blue** | \#1B2A6E | Primary Brand | Logo, headings on light BGs |
-|   | **Electric Blue** | \#3B82F6 | Primary Accent | CTAs, links, interactive elements |
-|   | **Neon Blue** | \#60A5FA | Accent Highlight | Hover states, highlights, glow effects |
-|   | **Pure White** | \#FFFFFF | Primary Text (Dark) | Body text on dark backgrounds |
-|   | **Off White** | \#E8E8ED | Secondary Text | Secondary text on dark backgrounds |
+| Swatch | Name              | Hex      | Role                | Usage                                  |
+| :----- | :---------------- | :------- | :------------------ | :------------------------------------- |
+|        | **Navy Blue**     | \#1B2A6E | Primary Brand       | Logo, headings on light BGs            |
+|        | **Electric Blue** | \#3B82F6 | Primary Accent      | CTAs, links, interactive elements      |
+|        | **Neon Blue**     | \#60A5FA | Accent Highlight    | Hover states, highlights, glow effects |
+|        | **Pure White**    | \#FFFFFF | Primary Text (Dark) | Body text on dark backgrounds          |
+|        | **Off White**     | \#E8E8ED | Secondary Text      | Secondary text on dark backgrounds     |
 
 ## **3.2 Surface & Background Colours**
 
-| Swatch | Name | Hex | Role | Usage |
-| :---- | :---- | :---- | :---- | :---- |
-|   | **Deep Black** | \#0A0A0F | Background Primary | Page background, hero sections |
-|   | **Dark Surface** | \#111118 | Background Secondary | Card backgrounds, elevated surfaces |
-|   | **Charcoal** | \#1A1A24 | Background Tertiary | Borders, dividers, subtle depth |
-|   | **Border Dark** | \#2A2A3A | Border Default | Borders, separators, outlines |
-|   | **Mid Grey** | \#555570 | Muted Text | Muted text, disabled states |
-|   | **Soft Grey** | \#8888A0 | Tertiary Text | Captions, eyebrow text, labels |
+| Swatch | Name             | Hex      | Role                 | Usage                               |
+| :----- | :--------------- | :------- | :------------------- | :---------------------------------- |
+|        | **Deep Black**   | \#0A0A0F | Background Primary   | Page background, hero sections      |
+|        | **Dark Surface** | \#111118 | Background Secondary | Card backgrounds, elevated surfaces |
+|        | **Charcoal**     | \#1A1A24 | Background Tertiary  | Borders, dividers, subtle depth     |
+|        | **Border Dark**  | \#2A2A3A | Border Default       | Borders, separators, outlines       |
+|        | **Mid Grey**     | \#555570 | Muted Text           | Muted text, disabled states         |
+|        | **Soft Grey**    | \#8888A0 | Tertiary Text        | Captions, eyebrow text, labels      |
 
 ## **3.3 Semantic Accent Colours**
 
-| Swatch | Name | Hex | Role | Usage |
-| :---- | :---- | :---- | :---- | :---- |
-|   | **Success Green** | \#34D399 | Success / Active | Status tags, positive indicators |
-|   | **Warning Amber** | \#FBBF24 | Warning | Caution states, pending items |
-|   | **Error Red** | \#EF4444 | Error / Danger | Error states, destructive actions |
-|   | **Purple** | \#A78BFA | Code / Technical | Code snippets, tech references |
+| Swatch | Name              | Hex      | Role             | Usage                             |
+| :----- | :---------------- | :------- | :--------------- | :-------------------------------- |
+|        | **Success Green** | \#34D399 | Success / Active | Status tags, positive indicators  |
+|        | **Warning Amber** | \#FBBF24 | Warning          | Caution states, pending items     |
+|        | **Error Red**     | \#EF4444 | Error / Danger   | Error states, destructive actions |
+|        | **Purple**        | \#A78BFA | Code / Technical | Code snippets, tech references    |
 
 **CSS Variables (for Claude Code)**
 
-*Include these as CSS custom properties at the :root level:*
+_Include these as CSS custom properties at the :root level:_
 
 \--color-bg-primary: \#0A0A0F;
 
@@ -142,13 +140,13 @@ The type system uses a distinctive display font for headlines paired with a clea
 
 ## **4.1 Font Stack**
 
-| Font | Usage | Fallback Stack | Weights |
-| :---- | :---- | :---- | :---- |
-| **Space Grotesk** | Hero headlines, section titles, display text | sans-serif | 700, 800 |
-| **DM Sans** | Body copy, navigation, UI labels, buttons | sans-serif | 400, 500, 700 |
-| **JetBrains Mono** | Code snippets, technical text, data, eyebrow labels | monospace | 400, 500 |
+| Font               | Usage                                               | Fallback Stack | Weights       |
+| :----------------- | :-------------------------------------------------- | :------------- | :------------ |
+| **Space Grotesk**  | Hero headlines, section titles, display text        | sans-serif     | 700, 800      |
+| **DM Sans**        | Body copy, navigation, UI labels, buttons           | sans-serif     | 400, 500, 700 |
+| **JetBrains Mono** | Code snippets, technical text, data, eyebrow labels | monospace      | 400, 500      |
 
-*Note: Space Grotesk was chosen because the BURN & CO. reference uses a similar geometric display face with strong uppercase presence. If a more unique option is preferred, consider alternatives like Satoshi, General Sans, or Clash Display from Fontshare (all free for commercial use).*
+_Note: Space Grotesk was chosen because the BURN & CO. reference uses a similar geometric display face with strong uppercase presence. If a more unique option is preferred, consider alternatives like Satoshi, General Sans, or Clash Display from Fontshare (all free for commercial use)._
 
 ## **4.2 Type Scale**
 
@@ -310,35 +308,35 @@ The site should feel alive and technical without being distracting. All animatio
 
 **Page Load**
 
-* Hero headline: stagger fade-up, each word appearing 0.1s apart
+- Hero headline: stagger fade-up, each word appearing 0.1s apart
 
-* Subheadline and CTA: fade-up with 0.3s delay after headline completes
+- Subheadline and CTA: fade-up with 0.3s delay after headline completes
 
-* Ticker bar: begins scrolling immediately
+- Ticker bar: begins scrolling immediately
 
 **Scroll Animations**
 
-* Section headlines: fade-up when entering viewport (IntersectionObserver, threshold 0.2)
+- Section headlines: fade-up when entering viewport (IntersectionObserver, threshold 0.2)
 
-* Cards: stagger fade-up, 0.15s delay between each card
+- Cards: stagger fade-up, 0.15s delay between each card
 
-* Service rows: slide in from left, 0.1s stagger
+- Service rows: slide in from left, 0.1s stagger
 
 **Hover Effects**
 
-* CTAs: background colour shift \+ glow shadow \+ arrow slide-right
+- CTAs: background colour shift \+ glow shadow \+ arrow slide-right
 
-* Cards: border colour transition \+ subtle translateY(-4px)
+- Cards: border colour transition \+ subtle translateY(-4px)
 
-* Service rows: subtle background lighten to \#111118
+- Service rows: subtle background lighten to \#111118
 
 **Background Effects**
 
-* Hero section: subtle gradient mesh or grid pattern overlay at 5–10% opacity
+- Hero section: subtle gradient mesh or grid pattern overlay at 5–10% opacity
 
-* Code snippet: subtle scanline effect or pulsing cursor animation
+- Code snippet: subtle scanline effect or pulsing cursor animation
 
-* Overall: no particle effects or 3D — keep it clean and fast-loading
+- Overall: no particle effects or 3D — keep it clean and fast-loading
 
 # **8\. Claude Code Implementation Notes**
 
@@ -346,21 +344,21 @@ This section contains specific instructions for when this guide is used as a ref
 
 **Tech Stack Recommendation**
 
-* Framework: Next.js 14+ (App Router) or plain HTML/CSS/JS if simpler
+- Framework: Next.js 14+ (App Router) or plain HTML/CSS/JS if simpler
 
-* Styling: Tailwind CSS with custom theme config matching the colour variables in Section 3
+- Styling: Tailwind CSS with custom theme config matching the colour variables in Section 3
 
-* Animations: Framer Motion for React, or CSS animations for static builds
+- Animations: Framer Motion for React, or CSS animations for static builds
 
-* Fonts: Google Fonts (see import string in Section 4.3)
+- Fonts: Google Fonts (see import string in Section 4.3)
 
-* Hosting: Vercel (if Next.js) or Netlify
+- Hosting: Vercel (if Next.js) or Netlify
 
 **File Structure Suggestion**
 
 /src
 
-  /components
+/components
 
     Hero.tsx
 
@@ -376,11 +374,11 @@ This section contains specific instructions for when this guide is used as a ref
 
     Footer.tsx
 
-  /styles
+/styles
 
     globals.css (CSS variables from Section 3\)
 
-  /assets
+/assets
 
     logo-white.png
 
@@ -388,14 +386,14 @@ This section contains specific instructions for when this guide is used as a ref
 
 **Key Development Notes**
 
-* The website is a single-page scrolling site (no routing needed beyond the home page)
+- The website is a single-page scrolling site (no routing needed beyond the home page)
 
-* All sections should be accessible via smooth scroll from navigation
+- All sections should be accessible via smooth scroll from navigation
 
-* The CTA button should link to a Calendly or GHL booking page (URL to be provided)
+- The CTA button should link to a Calendly or GHL booking page (URL to be provided)
 
-* Mobile-first responsive design is critical — most coach/creator audiences browse on mobile
+- Mobile-first responsive design is critical — most coach/creator audiences browse on mobile
 
-* Page load speed matters: lazy-load images, minimise JS bundle, use system font fallbacks until Google Fonts load
+- Page load speed matters: lazy-load images, minimise JS bundle, use system font fallbacks until Google Fonts load
 
-* The code snippet in the problem section is decorative — it doesn’t need to be syntactically valid, just visually compelling
+- The code snippet in the problem section is decorative — it doesn’t need to be syntactically valid, just visually compelling
