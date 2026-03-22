@@ -727,6 +727,60 @@
       .ops-item { grid-template-columns: 40px 1fr auto; }
       .ops-desc { display: none; }
     }
+
+    @media (max-width: 640px) {
+      /* Nav */
+      nav { padding: 10px 16px; }
+      .logo-img-wrap { width: 175px; height: 40px; }
+      .logo-img-wrap img { height: 220px; }
+
+      /* Section paddings */
+      .hero { padding: 92px 16px 52px; }
+      .reality { padding: 64px 16px; }
+      .framework-inner { padding: 64px 16px; }
+      .framework-heading { margin-bottom: 48px; }
+      .ops { padding: 64px 16px; }
+      .ops-heading { margin-bottom: 40px; }
+      .cta { padding: 72px 16px; }
+
+      /* Ops items — 2-col grid, desc + badge stack below */
+      .ops-item {
+        grid-template-columns: 36px 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 8px 14px;
+        padding: 24px 0;
+      }
+      .ops-item::before { left: -16px; }
+      .ops-num { font-size: 18px; }
+      .ops-desc {
+        display: block;
+        grid-column: 2;
+        font-size: 13px;
+        margin-top: 2px;
+      }
+      .badge {
+        grid-column: 2;
+        width: fit-content;
+        margin-top: 2px;
+      }
+
+      /* Timeline — give right column left padding so track line doesn't overlap text */
+      .tl-entry { padding: 40px 0; gap: 12px; }
+      .tl-left { padding-left: 36px; }
+      .tl-right { padding-left: 36px; }
+      .tl-dot { left: 11px; }
+      .tl-track { left: 18px; }
+
+      /* Footer */
+      footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        padding: 24px 16px;
+        text-align: center;
+      }
+      .footer-links { justify-content: center; }
+    }
   </style>
 </head>
 <body>
